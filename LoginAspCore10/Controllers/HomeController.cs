@@ -20,6 +20,11 @@ namespace LoginAspCore10.Controllers
 
 		public IActionResult Login()
 		{
+			var userEmail = HttpContext.Session.GetString("userEmail");
+			if (userEmail != null)
+			{
+				RedirectToAction("Dashboard");
+			}
 			return View();
 		}
         [HttpPost]
@@ -53,6 +58,19 @@ namespace LoginAspCore10.Controllers
             }
 
             return View();
+		}
+
+		public IActionResult Logout()
+		{
+			var userEmail = HttpContext.Session.GetString("userEmail");
+			if (userEmail != null)
+			{
+                HttpContext.Session.Remove("userEmail");
+                ViewBag.LogoutMessage = "You have been logged out successfully.";
+				return RedirectToAction("Login");
+			}
+			
+			return View();
 		}
 		public IActionResult Privacy()
         {

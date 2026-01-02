@@ -6,10 +6,26 @@
 
 <h1>Login</h1>
 
-<h4>UserTable</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
+        @{
+            if(ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.Message
+                </div>
+			}
+        }
+        @{
+            if (ViewBag.LogoutMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.LogoutMessage
+                </div>
+            }
+        }
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           
@@ -32,9 +48,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

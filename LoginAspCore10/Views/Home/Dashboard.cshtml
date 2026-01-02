@@ -2,7 +2,21 @@
 @{
     ViewData["Title"] = "Dashboard";
 }
-
+@{
+    if(ViewBag.Message != null)
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-primary" role="alert">
+                <h1>Successfully Login</h1>
+            </div>
+        }
+    }
+}
 <h1>Dashboard</h1>
 <h2>@ViewBag.Message</h2>
+
+<div>
+    <a asp-controller="Home" asp-action="Logout">Logout</a>  
+</div>
 
